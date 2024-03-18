@@ -32,19 +32,39 @@ def get_day_of_week_row(day_of_week: str) -> int:
 
 def get_schedule(column, row):
     lessons_list = []
+    lessons_room = []
     try:
         for i in range(7):
             cur_cell = ws.cell(row=row + i, column=column)
+            cur_cell_room = ws.cell(row=row + i, column=column+1)
             if cur_cell.value is None:
                 continue
-            lessons_list.append(cur_cell.value)
+            if cur_cell_room.value is None:
+                continue
 
-        return lessons_list
+            lessons_list.append(cur_cell.value)
+            lessons_room.append(cur_cell_room.value)
+
+        return lessons_list, lessons_room
     except:
         print('Не удаётся найти расписание')
 
 
-# get_schedule(get_column_for_class('5б'), get_day_of_week_row('понедельник'))
+print(get_schedule(get_column_for_class('5б'), get_day_of_week_row('понедельник')))
+
+
+def parser_of_data_hw(data):
+    result_string = ''
+    for homework in data:
+        for target in homework:
+            result_string += ' \n '
+            result_string += str(target)
+            result_string += ' \n '
+    print(result_string)
+    return result_string
+
+
+
 
 
 # написать фукнцию для вывода целой недели на класс
