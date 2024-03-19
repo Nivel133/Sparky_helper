@@ -58,11 +58,21 @@ def parser_of_data_hw(data):
     for homework in data:
         for target in homework:
             result_string += ' \n '
+            result_string += '📍'
             result_string += str(target)
+            result_string += '📍'
             result_string += ' \n '
     print(result_string)
     return result_string
 
+# def parser_of_data_schedule():
+#     lessons_string = ''
+#     for lesson, room in zip(list_of_lessons, list_of_rooms):
+#         lessons_string += str(lesson)
+#         lessons_string += ' КАБ '
+#         lessons_string += str(room)
+#         lessons_string += '\n '
+#     print(lessons_string)
 
 
 

@@ -5,11 +5,11 @@ from core.utils.states_schedule import StepsGetSchedule
 from core.utils.utils import get_column_for_class, get_day_of_week_row, get_schedule
 from core.keyboards.kb import keyboard_days_of_week, ikb_confirm_schedule, keyboard_main_menu, keyboard_yes_no
 import emoji
+from core.handlers import text
 
 
 async def start(message: Message):
-    await message.answer(f'Спасибо, что воспользовались моим ботом, {message.from_user.first_name} !\n'
-    f'Отправь мне команду start повторно, если захочешь вернуться в главное меню\n', reply_markup=keyboard_main_menu)
+    await message.answer(text.get_start_text(message.from_user.first_name), reply_markup=keyboard_main_menu)
 
 
 async def get_schedule_form(message: Message, state: FSMContext):
@@ -19,8 +19,7 @@ async def get_schedule_form(message: Message, state: FSMContext):
 
 
 async def get_day(message: Message, state: FSMContext):
-    await message.answer(f'{message.from_user.first_name}, Введи цифру и букву класса слитно, без пробелов и кавычек\n'
-                         f'Пример: 7б, 5в, 11а')
+    await message.answer(f'{message.from_user.first_name}, {text.get_day_text}')
                          # reply_markup=ReplyKeyboardRemove())
     await state.update_data(day=message.text)
     await state.update_data(user_id=message.from_user.id)
@@ -74,7 +73,9 @@ async def get_schedule_from_sparky(message: Message, state: FSMContext):
     #Пояснение как работает мап и джоин
     lessons_string = ''
     for lesson, room in zip(list_of_lessons, list_of_rooms):
+        lessons_string += '📍'
         lessons_string += str(lesson)
+        lessons_string += '📍'
         lessons_string += ' КАБ '
         lessons_string += str(room)
         lessons_string += '\n '
@@ -87,7 +88,7 @@ async def get_schedule_from_sparky(message: Message, state: FSMContext):
                 f'Выбранный класс: {num_and_letter}\r\n' \
 
     await message.answer(data_user, reply_markup=keyboard_main_menu)
-    # await message.answer(lessons_string)
+    await message.answer(lessons_string)
 
     await state.clear()
 

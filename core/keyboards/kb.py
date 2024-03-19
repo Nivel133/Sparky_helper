@@ -28,8 +28,8 @@ keyboard_days_of_week = ReplyKeyboardMarkup(
 
 kb_yes_no = [
     [
-        KeyboardButton(text="Всё верно!"),
-        KeyboardButton(text="Исправить")
+        KeyboardButton(text="✅"),
+        KeyboardButton(text="❌")
         # KeyboardButton(text="Назад")
     ],
 ]
