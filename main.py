@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
 # ssh-keygen
 # type C:\Users\User/.ssh/id_rsa.pub
-# ssh root@92.53.10*.231
+# ssh root@92.53.105.231
 #
 #
 # sudo apt update
@@ -88,3 +88,6 @@ if __name__ == "__main__":
 # delete main
 
 # git pull
+
+
+# 12:33
