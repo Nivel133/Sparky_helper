@@ -18,6 +18,7 @@ from core.handlers import text
 
 async def start_bot(bot: Bot):
     await bot.send_message(settings.bots.admin_id, text=text.onstartup_text)
+    await bot.send_message(settings.bots.admin_id_2, text=text.onstartup_text)
     await sql_hw.db_connect()
 
 async def stop_bot(bot: Bot):
@@ -90,4 +91,4 @@ if __name__ == "__main__":
 # git pull
 
 
-# 12:33
+# 12:43
