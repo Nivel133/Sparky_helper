@@ -7,6 +7,7 @@ async-timeout==4.0.3
 attrs==23.2.0
 certifi==2024.2.2
 chardet==5.2.0
+emoji==2.10.1
 environs==10.3.0
 et-xmlfile==1.1.0
 frozenlist==1.4.1
