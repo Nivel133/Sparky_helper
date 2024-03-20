@@ -26,7 +26,7 @@ kb_main_hw = [
     [
         KeyboardButton(text="Записать"),
         KeyboardButton(text="Посмотреть"),
-        KeyboardButton(text="Назад")
+        KeyboardButton(text="🔙")
     ],
 ]
 keyboard_main_hw = ReplyKeyboardMarkup(

@@ -27,8 +27,9 @@ async def create_hw(userid, homework):
 
 async def get_all_hw(userid):
     cur.execute(f'SELECT homework FROM Homework WHERE user_id = {userid}')
-    results = parser_of_data_hw(cur.fetchall())
+    return parser_of_data_hw(cur.fetchall())
 
-    return results
+
+
 
 

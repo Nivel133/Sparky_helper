@@ -1,4 +1,5 @@
 import openpyxl
+import random
 
 
 book = openpyxl.load_workbook(filename='schedule.xlsx')
@@ -54,27 +55,15 @@ print(get_schedule(get_column_for_class('5б'), get_day_of_week_row('понед�
 
 
 def parser_of_data_hw(data):
+    list_of_emoji = ['⚠', '📎', '📌', '🔬🧬', '🗿', '📵', '🆘']
     result_string = ''
     for homework in data:
         for target in homework:
-            result_string += ' \n '
-            result_string += '📍'
-            result_string += str(target)
-            result_string += '📍'
-            result_string += ' \n '
-    print(result_string)
+            cur_emoji = random.choice(list_of_emoji)
+            #здесь можно отправлять дату создания дз
+            result_string += f'{cur_emoji*5}\n'
+            result_string += f'{str(target)}\n'
     return result_string
-
-# def parser_of_data_schedule():
-#     lessons_string = ''
-#     for lesson, room in zip(list_of_lessons, list_of_rooms):
-#         lessons_string += str(lesson)
-#         lessons_string += ' КАБ '
-#         lessons_string += str(room)
-#         lessons_string += '\n '
-#     print(lessons_string)
-
-
 
 
 # написать фукнцию для вывода целой недели на класс

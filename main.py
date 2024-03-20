@@ -18,13 +18,15 @@ from core.utils.states_homework import StepsCreateHomework
 from core.handlers.reply import router
 from core.handlers.homework import execute_hw, start_write_hw, main_hw, yes_hw, no_hw, find_all_hw, back_to_menu_hw
 from core.data import sql_hw
+from core.handlers import text
+
 
 async def start_bot(bot: Bot):
-    await bot.send_message(settings.bots.admin_id, text="Бот запущен!")
+    await bot.send_message(settings.bots.admin_id, text=text.onstartup_text)
     await sql_hw.db_connect()
 
 async def stop_bot(bot: Bot):
-    await bot.send_message(settings.bots.admin_id, text="Бот выключен!")
+    await bot.send_message(settings.bots.admin_id, text=text.onendup_text)
 
 # git remote add amvera https://git.amvera.ru/nivel/sparky_helper_bot)
 async def main():
@@ -56,13 +58,10 @@ async def main():
     dp.message.register(main_hw, F.text == 'Домашнее Задание')
     dp.message.register(start_write_hw, F.text == 'Записать')
     dp.message.register(find_all_hw, F.text == 'Посмотреть')
-    dp.message.register(back_to_menu_hw, F.text == 'Назад')
+    dp.message.register(back_to_menu_hw, F.text == '🔙')
     dp.message.register(execute_hw, StepsCreateHomework.WRITE_HW)
     dp.callback_query.register(yes_hw, F.data.startswith('yes_hw'))
     dp.callback_query.register(no_hw, F.data.startswith('no_hw'))
-
-
-    # dp.message.register(get_no, F.text == '❌')
 
     try:
         await dp.start_polling(bot)
@@ -91,3 +90,6 @@ if __name__ == "__main__":
 #  pm2 start main.py --interpreter=python3
 # pm2 status
 # pm2 monit
+# delete main
+
+# git pull
