@@ -16,7 +16,7 @@ from core.handlers.get_schedule_handlers import get_schedule_form, get_day, get_
 from core.utils.states_schedule import StepsGetSchedule
 from core.utils.states_homework import StepsCreateHomework
 from core.handlers.reply import router
-from core.handlers.homework import execute_hw, start_write_hw, main_hw, yes_hw, no_hw, find_all_hw
+from core.handlers.homework import execute_hw, start_write_hw, main_hw, yes_hw, no_hw, find_all_hw, back_to_menu_hw
 from core.data import sql_hw
 
 async def start_bot(bot: Bot):
@@ -45,7 +45,8 @@ async def main():
     dp.message.register(start, Command(commands="start"))
 
     dp.message.register(get_schedule_form, F.text == 'Расписание')
-    # dp.message.register(get_no, F.text == 'Исправить')
+    dp.message.register(get_no, F.text == '❌')
+    # dp.message.register(get_yes, F.text == '✅')
     # dp.callback_query.register(get_yes, F.data.startswith('sch_yes'))
     # dp.callback_query.register(get_no, F.data.startswith('sch_no'))
     dp.message.register(get_day, StepsGetSchedule.GET_DAY)
@@ -55,6 +56,7 @@ async def main():
     dp.message.register(main_hw, F.text == 'Домашнее Задание')
     dp.message.register(start_write_hw, F.text == 'Записать')
     dp.message.register(find_all_hw, F.text == 'Посмотреть')
+    dp.message.register(back_to_menu_hw, F.text == 'Назад')
     dp.message.register(execute_hw, StepsCreateHomework.WRITE_HW)
     dp.callback_query.register(yes_hw, F.data.startswith('yes_hw'))
     dp.callback_query.register(no_hw, F.data.startswith('no_hw'))
@@ -69,3 +71,23 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+
+# ssh-keygen
+# type C:\Users\User/.ssh/id_rsa.pub
+# ssh root@92.53.10*.231
+#
+#
+# sudo apt update
+# sudo apt upgrade
+# sudo apt --reinstall install python3 -y
+# sudo apt --reinstall install python3-pip -y
+#
+# sudo apt install nodejs
+# sudo apt install npm
+# npm install pm2 -g
+
+# pip3 install -r requierements.txt
+#  pm2 start main.py --interpreter=python3
+# pm2 status
+# pm2 monit

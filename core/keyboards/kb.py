@@ -30,8 +30,10 @@ kb_yes_no = [
     [
         KeyboardButton(text="✅"),
         KeyboardButton(text="❌")
-        # KeyboardButton(text="Назад")
     ],
+    [
+        KeyboardButton(text="Назад")
+    ]
 ]
 keyboard_yes_no = ReplyKeyboardMarkup(
     keyboard=kb_yes_no,

@@ -54,3 +54,8 @@ async def no_hw(call: CallbackQuery, state: FSMContext, bot: Bot):
     await bot.send_message(userid, f'Напишите домашнее заданее заного')
     await state.set_state(StepsCreateHomework.WRITE_HW)
     await call.answer()
+
+
+async def back_to_menu_hw(message: Message, state: FSMContext):
+    await state.clear()
+    await message.answer(f'Возвращаемся в главное меню', reply_markup=keyboard_main_menu)

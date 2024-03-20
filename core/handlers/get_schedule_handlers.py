@@ -33,6 +33,9 @@ async def get_num_and_letter(message: Message, state: FSMContext):
     await message.answer(f'Ты выбрал день недели:\r\n{context_data.get("day")}\r\n'
                          f'Ты выбрал букву и номер класса: \r\n{message.text}\r\n',
                          reply_markup=keyboard_yes_no)
+    print(message.text)
+    # print(state.get_state())
+    # await state.clear()
     await state.set_state(StepsGetSchedule.GET_SCHEDULE)
     # Здесь необходимо дать возможность пользователю вернуться в начало анкеты
 
@@ -47,18 +50,21 @@ async def get_num_and_letter(message: Message, state: FSMContext):
 #                          f'Выбери день недели!', reply_markup=keyboard_days_of_week)
 #     await state.set_state(StepsGetSchedule.GET_DAY)
 
-# async def get_yes(call: CallbackQuery, state: FSMContext, bot: Bot):
-#     print(call)
+# async def get_yes(message: Message, state: FSMContext):
+#     print('Я отработала ДА')
+#     await message.answer('Ищу твоё расписание')
 #     await state.set_state(StepsGetSchedule.GET_SCHEDULE)
 #     # await call.answer()
 #
 #
 async def get_no(message: Message, state: FSMContext):
+    await state.clear()
     print('я отработала')
     # context_data = await state.get_data()
     # print(context_data)
-    await message.answer(f'что-то', reply_markup=keyboard_days_of_week)
-    await state.clear()
+    # await message.answer(f'что-то', reply_markup=keyboard_days_of_week)
+    # await state.clear()
+    await message.answer('Выбери день снова', reply_markup=keyboard_days_of_week)
     await state.set_state(StepsGetSchedule.GET_DAY)
 
 async def get_schedule_from_sparky(message: Message, state: FSMContext):
@@ -94,6 +100,6 @@ async def get_schedule_from_sparky(message: Message, state: FSMContext):
 
 
 
-async def get_no(message: Message, state: FSMContext):
-    await state.clear()
+# async def get_no(message: Message, state: FSMContext):
+#     await state.clear()
 
