@@ -1,14 +1,9 @@
 from aiogram import Bot, Dispatcher, F
-import asyncio
-import emoji
-from aiogram.types import Message
-import logging
 from aiogram.filters import Command
 from core.settings import settings
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher
-from aiogram.enums.parse_mode import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
 
 from core.handlers.get_schedule_handlers import get_schedule_form, get_day, get_num_and_letter,\
@@ -28,7 +23,7 @@ async def start_bot(bot: Bot):
 async def stop_bot(bot: Bot):
     await bot.send_message(settings.bots.admin_id, text=text.onendup_text)
 
-# git remote add amvera https://git.amvera.ru/nivel/sparky_helper_bot)
+
 async def main():
     logging.basicConfig(
         level=logging.INFO,
