@@ -15,7 +15,7 @@ async def main_hw(message: Message):
 async def find_all_hw(message: Message):
     all_hw_from_user = await sql_hw.get_all_hw(message.from_user.id)
     await message.answer(f'Вот все домашние задания, которые ты записал📦: \n\n'
-                         f'{all_hw_from_user}')
+                         f'{all_hw_from_user}', reply_markup=keyboard_main_menu)
     # await message.answer(f'\nЭто домашнее заданее, которое ты записал последним🆕: \n'
     #                      f'🆕{new_message[0]}🆕', reply_markup=keyboard_main_menu)
 
