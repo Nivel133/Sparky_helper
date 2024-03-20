@@ -48,10 +48,10 @@ def get_schedule(column, row):
 
         return lessons_list, lessons_room
     except:
-        print('Не удаётся найти расписание')
+        return None
 
 
-print(get_schedule(get_column_for_class('5б'), get_day_of_week_row('понедельник')))
+# print(get_schedule(get_column_for_class('5б'), get_day_of_week_row('понедельник')))
 
 
 def parser_of_data_hw(data):

@@ -45,16 +45,20 @@ async def get_schedule_from_sparky(message: Message, state: FSMContext):
     day_of_week = str(context_data.get('day'))
     num_and_letter = str(context_data.get('num_and_letter'))
     #Получаем расписание
-    list_of_lessons, list_of_rooms = get_schedule(get_column_for_class(num_and_letter), get_day_of_week_row(day_of_week))
+    try:
+        list_of_lessons, list_of_rooms = get_schedule(get_column_for_class(num_and_letter), get_day_of_week_row(day_of_week))
+        lessons_string = text.parser_of_lessons_text(list_of_lessons, list_of_rooms)  # верстка сообщения с расписанием
+        data_user = text.data_user_schedule(day_of_week, num_and_letter)  # Отображение в консоль
+        await message.answer(data_user + lessons_string, reply_markup=keyboard_main_menu)
 
-    #Пояснение как работает мап и джоин
-    lessons_string = text.parser_of_lessons_text(list_of_lessons, list_of_rooms) #верстка сообщения с расписанием
+        await state.clear()
+    except Exception as ex:
+        print(f"Unexpected {ex}, {type(ex)}")
+        await message.answer(f'Не удалось найти расписание😢\n'
+                             f', попробуй снова😓', reply_markup=keyboard_days_of_week)
+        await state.set_state(StepsGetSchedule.GET_DAY)
+        raise
 
-    data_user = text.data_user_schedule(day_of_week, num_and_letter) #Отображение в консоль
 
-    await message.answer(data_user+lessons_string, reply_markup=keyboard_main_menu)
-    # await message.answer()
-
-    await state.clear()
 
 
